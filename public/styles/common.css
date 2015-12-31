@@ -1,0 +1,78 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+html{
+	min-height: 100%;
+}
+body {
+	line-height: 1;
+	min-height: 100%;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/*
+Google Marerial Color: https://www.google.com/design/spec/style/color.html
+
+Indigo
+500		#3F51B5
+
+WEIGHT	COLOR		TEXT
+
+50		#E8EAF6
+100		#C5CAE9
+200		#9FA8DA		BLACK
+300		#7986CB		WHITE
+400		#5C6BC0
+500		#3F51B5
+600		#3949AB
+700		#303F9F
+800		#283593
+900		#1A237E
+
+A100	#8C9EFF		BLACK
+A200	#536DFE		WHITE
+A400	#3D5AFE
+A700	#304FFE
+
+*/

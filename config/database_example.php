@@ -55,12 +55,12 @@ return [
         'mysql' => [
             'driver'    => 'mysql',
             'host'      => env('DB_HOST', 'localhost'),
-            'database'  => env('DB_DATABASE', 'codeung'),
-            'username'  => env('DB_USERNAME', 'codeung'),
-            'password'  => env('DB_PASSWORD', '__d2fest'),
+            'database'  => env('DB_DATABASE', 'forge'),
+            'username'  => env('DB_USERNAME', 'forge'),
+            'password'  => env('DB_PASSWORD', ''),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
-            'prefix'    => 'codeung_',
+            'prefix'    => '',
             'strict'    => false,
         ],
 
