@@ -8,9 +8,12 @@
 	<link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 @stop
 
-@section('content')
+@section('container')
 	<?php if(Auth::check()) $user=Auth::user(); ?>
 	<div id="indexPage">
+		@if(Auth::check())
+			<a href="{{ url('board') }}" style="display:inline-block;padding:10px;margin:40px;background:#3F51B5;text-decoration:none;color:#fff"><i class="xi-stack-paper"></i> Board Test</a>
+		@endif
 		<div class="welcome">
 			<h2>WELCOME</h2><h3>to CODEUNG HAKGYO</h3>
 		</div>	

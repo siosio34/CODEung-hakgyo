@@ -24,7 +24,7 @@
 <body>
 
 <div id="codeung">
-	@yield('content')
+	@yield('container')
 </div>
 </body>
 </html>

@@ -26,4 +26,14 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth(); // login(get/post), register(get/post) 등등 지정
 
     Route::get('/', 'HomeController@index');
+    
+    
+    Route::get('board', 'HomeController@getBoardList');
+    Route::get('board/write', 'HomeController@getBoardCreate');
+    Route::post('board/write', 'HomeController@postBoardCreate');
+    Route::get('board/modify/{id}', 'HomeController@getBoardUpdate');
+    Route::post('board/modify/{id}', 'HomeController@postBoardUpdate');
+    Route::get('board/delete/{id}', 'HomeController@getBoardDelete');
+    Route::post('board/delete/{id}', 'HomeController@postBoardDelete');
+    Route::get('board/{id}', 'HomeController@getBoardRead');
 });
