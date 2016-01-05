@@ -1,0 +1,12 @@
+#어플리케이션을 서버에 배포할때 필수요소
+
+{
+	"name": "DockerSetting",
+	"version": "0.0.1",
+	"main": app.js",
+	"dependencies":
+	{
+		"express": "4.4.x"
+	}
+
+}
