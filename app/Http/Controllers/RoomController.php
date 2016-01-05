@@ -1,16 +1,54 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use Auth;
+use DB;
 
 class RoomController extends Controller {
+
+    public function __construct(){
+        $this->middleware('auth'); // Make only user who signed in can access ...by MANAPIE
+    }
+	
+	public function getRoomList() {
+		$rooms=DB::table('rooms')->select('id','name','password','type','tag','description','user_limit')->get();
+		$data=array('rooms'=>$rooms);
+		return view('rooms/list', $data);
+	} // by MANAPIE
+	
+	public function getRoomCreate() {
+		return view('rooms/create');
+	} // by MANAPIE
+	
+	public function postRoomCreate(Request $request) {
+		if(Auth::check() && $request->input('name')){
+			$id = DB::table('rooms')->insertGetId([
+				'name'=>$request->input('name'),
+				'type'=>$request->input('type'),
+				'tag'=>preg_replace('/\s+/','',$request->input('tag')),
+				'description'=>$request->input('description'),
+				'user_limit'=>$request->input('limit'),
+				'master_id'=>Auth::user()->id,
+				'password'=>bcrypt($request->input('password')),
+			]);
+			
+			DB::table('rooms')->where('id',$id)->update([
+				'token'=> bcrypt($id.'3'.$request->input('name').'3'.Auth::user()->id.'0'.Auth::user()->email.'6'), // by akakakakakaa
+			]);
+			return Redirect('room/'.$id);
+		}
+	} // by MANAPIE
+	
+	public function getRoomRead($id) {
+		$room=DB::table('rooms')->where('id',$id)->get();
+		$data=array('room'=>$room);
+		return view('rooms/read', $data);
+	} // by MANAPIE
+
+
+	/*
 	public function createRoom(Request $request) {
 		$roomName = $request->input('roomName');
 		$userId = $request->input('userId');
@@ -21,7 +59,7 @@ class RoomController extends Controller {
 				DB::insert('insert into codeung_rooms (name, master_id) values (?, ?)', [$roomName, $userId]);
 				$roomId = DB::select('select id from codeung_rooms where name = ? and  master_id = ?', [$roomName, $userId]);
 				$userEmail = DB::select('select email from codeung_users where id = ?', [$userId]);
-				$arr['roomToken'] = Hash::make($roomId[0]->id.'3'.$roomName.'3'.$userId.'0'.$userEmail[0]->email.'6');
+				$arr['roomToken'] = bcrypt($roomId[0]->id.'3'.$roomName.'3'.$userId.'0'.$userEmail[0]->email.'6');
 				DB::update('update codeung_rooms set token = ? where id = ?', [$arr['roomToken'], $roomId[0]->id]);
 				$arr['isMaster'] = true;
 				return json_encode($arr);
@@ -51,4 +89,5 @@ class RoomController extends Controller {
 		} catch(\Exception $e) {
 		}
 	}
+	*/
 } 

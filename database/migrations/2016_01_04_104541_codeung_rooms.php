@@ -21,6 +21,8 @@ class CodeungRooms extends Migration
             $table->string('password', 60);
             $table->string('type');
             $table->string('tag');
+            $table->text('description');
+            $table->integer('user_limit');
             $table->timestamps();
         });
     }

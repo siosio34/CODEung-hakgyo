@@ -55,7 +55,7 @@ return [
         'mysql' => [
             'driver'    => 'mysql',
             'port'      => '3306',
-            'host'      => env('DB_HOST', 'dev2.manapie.me'),
+            'host'      => env('DB_HOST', 'localhost'),
             'database'  => env('DB_DATABASE', 'codeung'),
             'username'  => env('DB_USERNAME', 'codeung'),
             'password'  => env('DB_PASSWORD', '__d2fest'),

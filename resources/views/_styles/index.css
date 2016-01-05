@@ -1,0 +1,33 @@
+
+body{background:url('/images/index.png') #E8EAF6 no-repeat bottom left;background-size:100% auto}
+
+#indexPage{margin-right:270px}
+#indexPage .welcome{position:absolute;bottom:50px;left:50px;font-family:'Lato';text-align:center;font-size:3em}
+#indexPage .welcome h2{font-size:2.1em}
+
+#myPage{position:absolute;top:0;right:0;width:270px;height:100%;background-color:#1A237E;color:#fff;overflow-y:auto}
+#myPage .login_icon{background:#9FA8DA;width:100px;height:100px;margin:30px auto;border-radius:100px;border:4px solid #7986CB;text-align:center}
+#myPage .login_icon i{line-height:100px;font-size:50px;color:#555}
+
+#myPage .user_info{text-align:center}
+#myPage .user_info .name{font-weight:bold;font-size:1.5em}
+#myPage .user_info .email{padding:5px 0;font-family:monospace;color:#C5CAE9}
+#myPage .user_info .buttons{padding:25px 0}
+#myPage .user_info .buttons a{text-decoration:none;color:#9FA8DA;background:#3F51B5;padding:5px 7px;font-size:0.9em;transition:all 0.1s ease-out}
+#myPage .user_info .buttons a:hover{color:#fff;background:#7986CB}
+
+#loginForm{padding:0 20px}
+#loginForm .input_wrap{background:#E8EAF6;margin-bottom:15px;padding:10px 42px 10px 10px;position:relative}
+#loginForm .input_wrap i{position:absolute;top:8px;left:8px;font-size:20px;color:#999;border-right:1px solid #adb235;padding-right:5px}
+#loginForm .input_wrap input{width:100%;padding:10px 10px 10px 42px;margin:-10px;background:transparent;border:none;font-size:14px;transition:all 0.3s ease-out}
+#loginForm .input_wrap input:focus{background:#fff}
+#loginForm .checkbox{margin:20px 0 2px 0;font-size:12px;border-top:1px solid #ccc}
+#loginForm .checkbox label{background:#1A237E;position:relative;top:-9px;padding-right:5px;color:#9FA8DA}
+#loginForm button{-webkit-appearance:none;padding:10px 0;background:#555;border:none;color:#fff;font-size:inherit;position:relative;width:100%;text-align:center;cursor:pointer;transition:all 0.3s ease-out}
+#loginForm button i{position:absolute;top:8px;left:8px;font-size:20px;color:#999;border-right:1px solid #777;padding-right:5px;transition:all 0.3s ease-out}
+#loginForm button:hover{background:#999}
+#loginForm button:hover i{color:#fff}
+#loginForm .loginMenu{text-align:right;margin:20px 0;font-size:0.7em}
+#loginForm .loginMenu a{color:#9FA8DA;text-decoration:none;transition:all 0.1s ease-out}
+#loginForm .loginMenu a:hover{color:#fff}
+#loginForm .help-block{display:block;margin-top:-15px;font-size:0.8em;padding:10px 0;color:#FFEB3B}

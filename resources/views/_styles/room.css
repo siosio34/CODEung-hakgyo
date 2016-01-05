@@ -1,0 +1,57 @@
+body{background:#E8EAF6}
+
+#content{margin-right:270px}
+
+.buttonArea{text-align:right;margin:10px}
+.buttonArea button{-webkit-appearance:none;background:#555;border:none;color:#fff;font-size:inherit;position:relative;text-align:center;cursor:pointer;transition:all 0.3s ease-out;padding:0}
+.buttonArea button:hover{background:#3F51B5}
+.buttonArea button:hover i{color:#fff}
+.buttonArea button a,
+.buttonArea button span{color:inherit;text-decoration:inherit;display:block;padding:10px}
+.buttonArea button.gray{background:#999}
+.buttonArea button.gray:hover{background:#bbb}
+
+.message{margin:20px}
+.message .message_content{background:#C5CAE9;margin-bottom:15px}
+.message h3{font-size:1.5em;padding:25px 20px 15px 20px}
+.message p{padding:0 20px 20px 20px;line-height:1.3;color:#999}
+
+h3.sectionTitle{padding:15px;font-size:1.2em;color:#1A237E}
+
+
+/* Room list */
+
+#roomList{border-top:1px solid #ccc}
+#roomList li{border-bottom:1px solid #ccc}
+#roomList li a{background:#fff;color:#000;text-decoration:none;display:block;transition:all 0.2s ease-out;position:relative}
+#roomList li a:hover,
+#roomList li a:focus{background:#C5CAE9}
+#roomList li a .id{position:absolute;top:10px;left:10px;background:#3F51B5;color:#C5CAE9;width:50px;height:50px;text-align:center;white-space:nowrap;line-height:50px;border-radius:50px;font-family:"Trebuchet MS";font-size:23px}
+#roomList li a .info{display:block}
+#roomList li a .name{display:block;font-size:1.3em;padding:13px 10px 2px 65px}
+#roomList li a .meta{display:block;padding:0 10px 11px 65px;font-size:0.9em;color:#999}
+#roomList li a .meta .type{float:left;padding:5px 7px;background:#9FA8DA;color:#fff;border-radius:50px}
+#roomList li a .meta .description{float:left;padding:5px}
+#roomList li a .meta .limit{float:right;padding:5px}
+
+.formWrap{margin:0 10px;border-bottom:1px solid #ccc;border-top:1px solid #ccc;padding-bottom:10px}
+.formWrap .label{display:block;padding:10px 5px 5px 5px}
+.formWrap .inputWrap{display:block;padding:10px;position:relative;font-size:14px;border-left:1px solid #eee}
+.formWrap .inputWrap input,
+.formWrap .inputWrap textarea{width:100%;padding:10px;margin:-10px;border:none;font-size:14px;transition:all 0.3s ease-out}
+
+#sidebar{position:absolute;top:0;right:0;width:270px;height:100%;background-color:#1A237E;color:#fff;overflow-y:auto}
+
+
+/* Room */
+#roomContent{margin-right:70px;height:100%}
+#roomContent .teacher{float:left;width:50%;height:100%}
+#roomContent .student{float:left;width:50%;height:100%}
+
+#video{height:50%}
+#teacherCode{height:50%;background:#333;color:#fff}
+
+#chatting{height:50%;background:#fff}
+#studentCode{height:50%;background:#1A237E;color:#fff}
+
+#userList{background:#3F51B5;position:fixed;top:0;right:0;height:100%;width:70px}
