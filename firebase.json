@@ -1,0 +1,14 @@
+{
+  "firebase": "crackling-heat-3070",
+  "public": "public",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ],
+  "redirects": [ {
+    "source": "/",
+    "destination": "/main.html",
+    "type" : 302
+  } ]
+}

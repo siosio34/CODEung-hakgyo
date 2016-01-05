@@ -15,6 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/main', function() {
+    return view('main');
+});
+
+Route::get('/room', function() {
+    return view('room');
+});
+
+Route::get('/enterRoom', 'RoomController@enterRoom');
+
+Route::get('/createRoom', 'RoomController@createRoom');
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -28,4 +39,8 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
     //
+});
+
+Route::group(array('domain' => array('https://crackling-heat-3070.firebaseapp.com')), function() {
+	return view('welcome');
 });

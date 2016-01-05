@@ -54,13 +54,14 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', 'localhost'),
-            'database'  => env('DB_DATABASE', 'forge'),
-            'username'  => env('DB_USERNAME', 'forge'),
-            'password'  => env('DB_PASSWORD', ''),
+            'port'      => '3306',
+            'host'      => env('DB_HOST', 'dev2.manapie.me'),
+            'database'  => env('DB_DATABASE', 'codeung'),
+            'username'  => env('DB_USERNAME', 'codeung'),
+            'password'  => env('DB_PASSWORD', '__d2fest'),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
+            'prefix'    => 'codeung_',
             'strict'    => false,
         ],
 
