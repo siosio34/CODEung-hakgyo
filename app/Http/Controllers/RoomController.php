@@ -33,9 +33,14 @@ class RoomController extends Controller {
 				'master_id'=>Auth::user()->id,
 				'password'=>bcrypt($request->input('password')),
 			]);
+			if($request->input('password')){
+				DB::table('rooms')->where('id',$id)->update([
+					'password'=>bcrypt($request->input('password')),
+				]);
+			}
 			
 			DB::table('rooms')->where('id',$id)->update([
-				'token'=> bcrypt($id.'3'.$request->input('name').'3'.Auth::user()->id.'0'.Auth::user()->email.'6'), // by akakakakakaa
+				'token'=>crypt($id.'3'.$request->input('name').'3'.Auth::user()->id.'0'.Auth::user()->email.'6'), // by akakakakakaa
 			]);
 			return Redirect('room/'.$id);
 		}
@@ -45,6 +50,18 @@ class RoomController extends Controller {
 		$room=DB::table('rooms')->where('id',$id)->first();
 		$data=array('room'=>$room);
 		return view('rooms/read', $data);
+	} // by MANAPIE
+	
+	public function getRoomCode($id) {
+		$room=DB::table('rooms')->select('code')->where('id',$id)->first();
+		$data=array('room'=>$room);
+		return view('rooms/code', $data);
+	} // by MANAPIE
+	
+	public function postRoomCode(Request $request,$id) {
+		DB::table('rooms')->where('id',$id)->update([
+			'code'=>$request->input('code'),
+		]);
 	} // by MANAPIE
 
 

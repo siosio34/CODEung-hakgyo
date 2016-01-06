@@ -56,6 +56,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('room', 'RoomController@getRoomList');
     Route::get('room/create', 'RoomController@getRoomCreate');
     Route::post('room/create', 'RoomController@postRoomCreate');
+    Route::get('room/code/{id}', 'RoomController@getRoomCode');
+    Route::post('room/code/{id}', 'RoomController@postRoomCode');
     Route::get('room/{id}', 'RoomController@getRoomRead');
     
     

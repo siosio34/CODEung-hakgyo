@@ -22,6 +22,7 @@ class CodeungRooms extends Migration
             $table->string('type');
             $table->string('tag');
             $table->text('description');
+            $table->longText('code');
             $table->integer('user_limit');
             $table->timestamps();
         });

@@ -6,6 +6,7 @@
         @parent
         <link rel="stylesheet" href="/styles/room.css" />
         <script src="/scripts/room.js"></script>
+        <script src="/ace/ace.js" type="text/javascript"></script>
 		<script src="//cdn.webrtc-experiment.com/firebase.js"></script>
 		<script src="//cdn.webrtc-experiment.com/getMediaElement.min.js"></script>
 		<script src="//cdn.webrtc-experiment.com/RTCMultiConnection.js"></script>
@@ -17,27 +18,22 @@
 			}, "*");
 			
 			var token = "{{ $room->token }}";
-			var channel = token.replace(/\$/gi,"");
+			var token = token.replace(/\$/gi,"");
+			var channel = token.replace(/\./gi,"");
 			var MODERATOR_CHANNEL_ID = channel;
 			var connection = new RTCMultiConnection(MODERATOR_CHANNEL_ID);			
 
-			var videosContainer = document.getElementById('video');
+			var videoContainer = document.getElementById('video-video');
+			var screenContainer = document.getElementById('video-screen');
 			connection.onstream = function(e) {
-				var buttons = ['mute-audio', 'mute-video', 'record-audio', 'record-video', 'full-screen', 'volume-slider', 'stop'];
-				if (connection.session.audio && !connection.session.video) {
-					buttons = ['mute-audio', 'full-screen', 'stop'];
-				}
+			//	var buttons = ['mute-audio', 'mute-video', 'record-audio', 'record-video', 'full-screen', 'volume-slider', 'stop'];
+			//	if (connection.session.audio && !connection.session.video) {
+			//		buttons = ['mute-audio', 'full-screen', 'stop'];
+			//	}
+				var buttons = [];
 				
-				var width;
-				var height;
-				if(e.isScreen == true) {
-					width = videosContainer.clientWidth;
-					height = videosContainer.clientHeight;
-				}
-				else if(e.isVideo == true) {
-					width = videosContainer.clientWidth/3;
-					height = videosContainer.clientHeight/3;
-				}
+				var width = screenContainer.clientWidth>videoContainer.clientWidth?screenContainer.clientWidth:videoContainer.clientWidth;
+				var height = screenContainer.clientHeight>videoContainer.clientHeight?screenContainer.clientHeight:videoContainer.clientHeight;
 				
 				var mediaElement = getMediaElement(e.mediaElement, {
 					width: width,
@@ -75,7 +71,10 @@
 						connection.peers[e.userid].drop();
 					}
 				});
-				videosContainer.insertBefore(mediaElement, videosContainer.firstChild);
+				if(e.isScreen == true)
+					screenContainer.insertBefore(mediaElement, screenContainer.firstChild);
+				else if(e.isVideo == true)
+					videoContainer.insertBefore(mediaElement, videoContainer.firstChild);
 				if (e.type == 'local') {
 					mediaElement.media.muted = true;
 					mediaElement.media.volume = 0;
@@ -105,14 +104,11 @@
 				session.broadcast = true;
 				connection.session = session;
 				connection.open({
-						//dontTransmit: true,
+				//		dontTransmit: true,
 						sessionid: MODERATOR_SESSION_ID
 				});
 			}
 			else if(isMaster == "false") {
-				session.audio = true;
-				session.data = true;
-				connection.session = session;
 				connection.join({
 						sessionid: MODERATOR_SESSION_ID,
 						userid: MODERATOR_ID,
@@ -120,6 +116,58 @@
 				});
 			}
 		}
+		// by akakakakakaa
+		</script>
+		
+		<meta name="csrf_token" content="{{ csrf_token() }}" />
+		<script>
+			$(function(){
+				$('#roomContent').height($(window).height());
+				
+				var teacherEditor = ace.edit("teacherCodeArea");
+				teacherEditor.getSession().setMode("ace/mode/c_cpp");
+				teacherEditor.setTheme("ace/theme/twilight");
+				teacherEditor.setShowPrintMargin(false);
+				document.getElementById('teacherCodeArea').style.fontSize='13px';
+				
+				var studentEditor = ace.edit("studentCodeArea");
+				studentEditor.getSession().setMode("ace/mode/c_cpp");
+				studentEditor.setTheme("ace/theme/github");
+				studentEditor.setShowPrintMargin(false);
+				document.getElementById('studentCodeArea').style.fontSize='13px';
+				
+				@if(Auth::user()->id == $room->master_id)
+					setInterval(function(){
+						$.ajax({
+							url: "/room/code/{{$room->id}}",
+							type: "POST",
+							beforeSend: function(xhr){
+								var token=$('meta[name="csrf_token"]').attr('content');
+								
+								if(token){
+									return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+								}
+							},
+							data: {code:teacherEditor.getValue()}
+						});
+					}, 1000);
+				@else
+					setInterval(function(){
+						$.get("/room/code/{{$room->id}}", function(data){
+							teacherEditor.setValue(data);
+						});
+					}, 1000);
+				@endif
+				
+				$(window).resize(function(){
+					$('#roomContent').height($(window).height());
+				});
+				$('#video').click(function(){
+					$('#video-video').toggleClass('back').toggleClass('front');
+					$('#video-screen').toggleClass('back').toggleClass('front');
+				});
+			});
+		// by MANAPIE
 		</script>
 @stop
 
@@ -128,13 +176,12 @@
         <div id="roomContent">
                 <div class="teacher">
                         <div id="video">
-                                <div id="screenContainer">
-				</div>
-				<div id="videoContainer">
-				</div>
+                        	<div class="wait">... Wait for loading ...</div>
+                        	<div id="video-video" class="front"></div>
+                        	<div id="video-screen" class="back"></div>
                         </div>
                         <div id="teacherCode">
-                                Section: Teacher's code
+                        	<div id="teacherCodeArea">{{ $room->code }}</div>
                         </div>
                 </div>
                 <div class="student">
@@ -142,7 +189,7 @@
                                 Section: Chat(text)
                         </div>
                         <div id="studentCode">
-                                Section: Student's code
+                        	<div id="studentCodeArea"></div>
                         </div>
                 </div>
 
