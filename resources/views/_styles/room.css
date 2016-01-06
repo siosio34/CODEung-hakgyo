@@ -41,6 +41,8 @@ h3.sectionTitle{padding:15px;font-size:1.2em;color:#1A237E}
 .formWrap .inputWrap textarea{width:100%;padding:10px;margin:-10px;border:none;font-size:14px;transition:all 0.3s ease-out}
 
 #sidebar{position:absolute;top:0;right:0;width:270px;height:100%;background-color:#1A237E;color:#fff;overflow-y:auto}
+#sidebar .tags{padding:10px}
+#sidebar .tags a{background:#5C6BC0;color:#C5CAE9;padding:3px 10px 3px 5px;border-radius:50px;display:inline-block;text-decoration:none;margin:5px}
 
 
 /* Room */

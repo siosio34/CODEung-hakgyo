@@ -40,6 +40,17 @@
 	</div>
 	
 	<div id="sidebar">
-		
+		<div class="tags">
+			<?php
+				foreach($rooms as $room){
+					if($room->tag && !$room->password){
+						$tags=explode(',', $room->tag);
+						foreach($tags as $tag){
+							echo '<a href="'.url('room/'.$room->id).'"><i class="xi-tag"></i> '.$tag.'</a>';
+						}
+					}
+				}
+			?>
+		</div>
 	</div>
 @stop
