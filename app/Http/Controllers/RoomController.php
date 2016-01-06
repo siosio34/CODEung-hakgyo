@@ -42,7 +42,7 @@ class RoomController extends Controller {
 	} // by MANAPIE
 	
 	public function getRoomRead($id) {
-		$room=DB::table('rooms')->where('id',$id)->get();
+		$room=DB::table('rooms')->where('id',$id)->first();
 		$data=array('room'=>$room);
 		return view('rooms/read', $data);
 	} // by MANAPIE
